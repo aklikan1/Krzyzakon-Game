@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+      <br>
+      <h3 class="text-center">TOP 10 GRACZY</h3>
+      <div class="container-fluid">
+        <div class="card shadow mb-7">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable">
+                <thead>
+                <tr>
+                  <th>Uczestnik</th>
+                  <th>Punkty</th>
+                  <th>Frakcja</th>
+                </tr>
+                </thead>
+                <tbody *ngFor="let topPlayer of topTenPlayersList">
+                <tr>
+                  <td>
+                    <i class="table-sm" style="width: 80%; font-style: normal">{{topPlayer.name}}</i>
+                  </td>
+                  <td>
+                    <i class="table-sm" style="width: 80%; font-style: normal">{{topPlayer.points}}</i>
+                  </td>
+                  <td>
+                    <i class="table-sm" style="width: 80%"
+                       *ngIf="topPlayer.fraction == 1">Zakon Krzyzacki</i>
+                    <i class="input-label" style="width: 80%; color:red"
+                       *ngIf="topPlayer.fraction == 2">Krolesto Polskie</i>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="container-fluid" *ngIf="listPlayers.length != 0">
+  <div class="card shadow mb-7">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable">
+          <thead>
+          <tr>
+            <th>Uczestnik</th>
+            <th>Telefon</th>
+            <th>Frakcja</th>
+            <th>Usun</th>
+          </tr>
+          </thead>
+          <tbody *ngFor="let player of listPlayers | playerNameFilter:searchName" >
+            <tr>
+              <td>
+                <input type="text"
+                       [(ngModel)]="player.name"
+                       (change)="updatePlayer(player)"
+                       class="input-label"
+                       style="width: 80%"
+                />
+              </td>
+              <td>
+                <input type="text"
+                       [(ngModel)]="player.phone"
+                       (change)="updatePlayer(player)"
+                       class="input-label"
+                       style="width: 80%"
+                />
+              </td>
+              <td>
+                <i class="input-label"
+                   *ngIf="player.fraction.id == 1" style="width: 80%">
+                  {{player.fraction.name}}</i>
+                <i class="input-label"
+                   *ngIf="player.fraction.id == 2" style="width: 80%; color:red">
+                  {{player.fraction.name}}</i>
+              </td>
+              <td>
+                <a (click)="deletePlayer(player)" class="text-danger">
+                  <i class="fa fa-trash-o"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

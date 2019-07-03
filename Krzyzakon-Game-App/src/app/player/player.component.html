@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+      <br>
+      <form name="form" #f="ngForm" (submit)="f.form.valid && addPlayer()" novalidate class="player-form">
+        <!-- Name -->
+        <div class="form-group">
+          <label for="name">Imie/Ksywa*</label>
+          <input type="text"
+                 id="name"
+                 class="form-control"
+                 name="name"
+                 placeholder="Imie lub ksywa uczestnika"
+                 [(ngModel)]="model.name"
+                 [playersList]="players"
+                 #name="ngModel"
+                 [ngClass]="{'is-invalid' : f.submitted && name.invalid}"
+                 required uppercase uniquePlayer/>
+          <!-- Input validation group -->
+          <div *ngIf="f.submitted && name.invalid" class="invalid-input">
+            <!-- individual validation errors -->
+            <div *ngIf="name.errors?.required">Nazwa uczestnika nie moze byc pusta</div>
+            <div *ngIf="name.errors?.uniquePlayer">Juz jest taka sama nazwa uczestnika</div>
+          </div>
+
+        </div>
+        <!-- Phone -->
+        <div class="form-group">
+          <label for="phone">Nr telefonu</label>
+          <input type="text"
+                 id="phone"
+                 class="form-control"
+                 name="phone"
+                 placeholder="Nr telefonu uczestnika"
+                 [(ngModel)]="model.phone"/>
+        </div>
+
+        <!-- Fraction -->
+        <div class="form-group">
+          <label for="fraction">Ktora frakcja*</label>
+          <fieldset id="fraction">
+            <input type="radio" name="fraction" value="1" id="zakon"
+                   [(ngModel)]="model.fraction"
+                   #fraction="ngModel"
+                   [ngClass]="{'is-invalid' : f.submitted && fraction.invalid}"
+                   required="checkbox"> Zakon Krzyzacki <br>
+            <input type="radio" name="fraction" value="2" id="polska"
+                   [(ngModel)]="model.fraction"
+                   #fraction="ngModel"
+                   [ngClass]="{'is-invalid' : f.submitted && fraction.invalid}"
+                   required="checkbox"> Krolestwo Polskie <br>
+            <!-- Input validation group -->
+            <div *ngIf="f.submitted && fraction.invalid" class="invalid-input">
+              <!-- individual validation errors -->
+              <div *ngIf="fraction.errors?.required">Frakcja jest wymagana</div>
+            </div>
+          </fieldset>
+        </div>
+
+        <button type="submit" class="btn btn-info pull-right">
+          <i class="fa fa-user-plus" aria-hidden="true"></i>
+          <span> Dodaj uczestnika</span>
+        </button>
+      </form>
+
+      <p> * - Pola obowiazkowe</p>
+    </div>
+    <div class="offset-3"></div>
+  </div>
+</div>

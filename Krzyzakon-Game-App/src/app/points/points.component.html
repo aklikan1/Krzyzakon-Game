@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+      <br>
+      <form name="form" #f="ngForm" (submit)="f.form.valid && addPoints(playerName)" novalidate class="player-form">
+
+        <!-- Player -->
+        <div class="form-group">
+          <label for="players">Gracz*</label>
+          <input list="players"
+                 autocomplete="on"
+                 name="player"
+                 id="player"
+                 class="form-control"
+                 placeholder="Imie/Nick gracza"
+                 [(ngModel)]="playerName"
+                 #name="ngModel"
+                 [ngClass]="{'is-invalid' : f.submitted && name.invalid}"
+                 [playersList]="players"
+                 required inputCorrectList />
+          <datalist id="players">
+            <option *ngFor="let player of players" value="{{player.name}}">
+          </datalist>
+
+          <!-- Input validation group -->
+          <div *ngIf="f.submitted && name.invalid" class="invalid-input">
+            <!-- individual validation errors -->
+            <div *ngIf="name.errors?.required">Pole nie moze byc puste</div>
+            <div *ngIf="name.errors?.inputCorrectList">Niezgodna nazwa uczestnika</div>
+          </div>
+        </div>
+
+        <!-- Player points -->
+        <div class="form-group">
+          <label for="playerPoints">Punkty dla gracza*</label>
+          <input type="number"
+                 id="playerPoints"
+                 class="form-control"
+                 name="playerPoints"
+                 placeholder="Punkty gracza"
+                 [(ngModel)]="playerPoints"
+                 #playerPoint="ngModel"
+                 [ngClass]="{'is-invalid' : f.submitted && playerPoint.invalid}"
+                 required/>
+          <!-- Input validation group -->
+          <div *ngIf="f.submitted && playerPoint.invalid" class="invalid-input">
+            <!-- individual validation errors -->
+            <div *ngIf="playerPoint.errors?.required">Pole nie moze byc puste</div>
+          </div>
+        </div>
+
+        <!-- Fraction points -->
+        <div class="form-group">
+          <label for="fractionPoints">Punkty dla frakcji*</label>
+          <input type="number"
+                 id="fractionPoints"
+                 class="form-control"
+                 name="fractionPoints"
+                 placeholder="Punkty frakcji"
+                 [(ngModel)]="fractionPoints"
+                 #fractionPoint="ngModel"
+                 [ngClass]="{'is-invalid' : f.submitted && fractionPoint.invalid}"
+                 required/>
+          <!-- Input validation group -->
+          <div *ngIf="f.submitted && fractionPoint.invalid" class="invalid-input">
+            <!-- individual validation errors -->
+            <div *ngIf="fractionPoint.errors?.required">Pole nie moze byc puste</div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-info pull-right">
+          <i class="fa fa-plus-circle"></i>
+          <span> Dodaj punkty</span>
+        </button>
+      </form>
+
+      <p> * - Pola obowiazkowe</p>
+    </div>
+    <div class="offset-3"></div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="container">
+  <!-- Player menu -->
+  <div class="row" style="margin-top:12px;">
+    <div class="col-md-8">
+      <input type="text"
+             [(ngModel)]="searchName"
+             class="form-control"
+             style="width: 100%;"
+             placeholder="Uczestnik lub nr telefonu..."
+             uppercase>
+    </div>
+    <div class="col-md-4">
+      <button type="button"
+              [routerLink]="'/top'"
+              [disabled]="this.listPlayers.length === 0"
+              class="btn btn-info pull-right"
+              style="margin-left:12px;"><i class="fa fa-arrow-up"></i> Top 10
+      </button>
+    </div>
+  </div>
+
+  <!-- Fraction content -->
+  <div class="row" style="margin-top: 28px;">
+    <!-- Notebooks Menu -->
+    <div class="col-md-3">
+      <br>
+      <div class="list-group list-group-flush">
+        <a (click)="selectAllFraction()" class="list-group-item list-group-item-action">
+          <i class="fa fa-cubes"></i>&nbsp;All
+        </a>
+        <!-- Fraction List -->
+        <a *ngFor="let fraction of fractions" (click)="selectFraction(fraction)" class="list-group-item list-group-item-action">
+          <i class="fa fa-shield"></i>&nbsp;
+          <label class="input-label" style="width: 80%">{{fraction.name}}</label>
+        </a>
+      </div>
+    </div>
+
+    <!-- Players Panel -->
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Message if there are no notes -->
+          <h3 *ngIf="selectedFraction != null">{{selectedFraction.name}}</h3>
+          <h3 *ngIf="selectedFraction == null">Wszyscy gracze</h3>
+          <p *ngIf="this.listPlayers.length === 0">Brak graczy do wyswietlenia</p>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Players List -->
+        <app-list [searchName]="searchName"
+                  [listPlayers]="listPlayers"
+                  (playerUpdated)="updatePlayer($event)"
+                  (playerDeleted)="deletePlayer($event)">
+        </app-list>
+      </div>
+    </div>
+  </div>
+</div>
