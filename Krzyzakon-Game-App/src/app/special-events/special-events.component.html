@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="offset-1">
+      <div class="col-11">
+        <br> <br> <br>
+        <h1 class="text-center" style="font-size: 60px"><b>WYDARZENIA SPECJALNE</b></h1>
+        <br> <br> <br>
+        <div *ngFor="let tour of tournaments">
+          <div *ngIf="currentTime.getHours()*60+currentTime.getMinutes() < tour.startTime
+          && currentTime.getHours()*60+currentTime.getMinutes() >= tour.beforeEventTime">
+            <h2><b>{{tour.name}}: </b>{{tour.date}}</h2>
+            <br>
+            <h4>{{tour.description}}</h4>
+          </div>
+        </div>
+        <br>
+          <h4 *ngIf="currentTime.getHours()*60+currentTime.getMinutes() <= 19*60+30">Nagrody: <br style="line-height: 35px">
+            - Prestiż i nagroda za wygraną w turnieju <br>
+            - 200 PW dla frakcji za uczestnictwo w turnieju <br>
+            - 30 osobistych PW za uczestnictwo w turnieju <br>
+          </h4>
+      </div>
+    </div>
+</div>
+

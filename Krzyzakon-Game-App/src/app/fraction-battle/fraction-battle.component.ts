@@ -16,7 +16,7 @@ export class FractionBattleComponent implements OnInit {
   fractionPointsChart: Chart;
   private update: Subscription;
 
-  constructor(public nav:NavbarService, private apiService: ApiService) { }
+  constructor(public nav: NavbarService, private apiService: ApiService) { }
 
   ngOnInit() {
     this.nav.hide();

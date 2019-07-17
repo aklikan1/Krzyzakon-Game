@@ -14,7 +14,7 @@ import {tap} from "rxjs/operators";
 })
 export class ApiService {
 
-  private BASE_URL = "http://localhost:8080/api";
+  private BASE_URL = "http://192.168.43.197:8080/api";
   private ALL_PLAYERS_URL = `${this.BASE_URL}\\player\\all`;
   private ALL_PLAYERS_BY_FRACTION_URL = `${this.BASE_URL}\\player\\byFraction\\`;
   private PLAYER_BY_ID_URL = `${this.BASE_URL}\\player\\`;

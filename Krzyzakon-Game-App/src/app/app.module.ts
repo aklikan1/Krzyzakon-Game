@@ -21,6 +21,7 @@ import { InputListDirectiveDirective } from './shared/directives/input-list-dire
 import { UniquePlayerDirectiveDirective } from './shared/directives/unique-player-directive.directive';
 import {ChartsModule} from "ng2-charts";
 import 'chartjs-plugin-labels';
+import { SpecialEventsComponent } from './special-events/special-events.component';
 
 const appRoutes :Routes = [
   {
@@ -42,6 +43,10 @@ const appRoutes :Routes = [
   {
     path:'battle',
     component:FractionBattleComponent
+  },
+  {
+    path:'special',
+    component:SpecialEventsComponent
   },
   {
     path:'',
@@ -69,7 +74,8 @@ const appRoutes :Routes = [
     LowerCaseDirectiveDirective,
     UpperCaseDirectiveDirective,
     InputListDirectiveDirective,
-    UniquePlayerDirectiveDirective
+    UniquePlayerDirectiveDirective,
+    SpecialEventsComponent
   ],
   imports: [
     BrowserModule,
